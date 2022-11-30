@@ -1,3 +1,4 @@
+using AutoMapper;
 using WebApi.DbAccess;
 
 namespace WebApi.BookOperations.CreateBook
@@ -6,10 +7,12 @@ namespace WebApi.BookOperations.CreateBook
 	{
 		public CreateBookModel Model { get; set; }
 		private readonly BookStoreDbContext _context;
+		private readonly IMapper _mapper;
 
-		public CreateBookCommand(BookStoreDbContext context)
+		public CreateBookCommand(BookStoreDbContext context, IMapper mapper)
 		{
 			_context = context;
+			_mapper = mapper;
 		}
 
 		public void Handle()
@@ -20,12 +23,7 @@ namespace WebApi.BookOperations.CreateBook
 			{
 				throw new InvalidOperationException("Book exist.");
 			}
-			var mappedBook = new Book() {
-				Title = Model.Title,
-				PublishDate = Model.PublishDate,
-				PageCount = Model.PageCount,
-				GenreId = Model.GenreId
-			};
+			Book mappedBook = _mapper.Map<Book>(Model);
 			_context.Add(mappedBook);
 			_context.SaveChanges();
 		}

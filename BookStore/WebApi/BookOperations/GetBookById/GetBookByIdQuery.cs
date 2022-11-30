@@ -1,3 +1,4 @@
+using AutoMapper;
 using WebApi.Common;
 using WebApi.DbAccess;
 
@@ -7,10 +8,12 @@ namespace WebApi.BookOperations.GetBookById
 	{
 		public int Id { get; set ;}
 		private readonly BookStoreDbContext _context;
+		private readonly IMapper _mapper;
 
-		public GetBookById(BookStoreDbContext context)
+		public GetBookById(BookStoreDbContext context, IMapper mapper)
 		{
 			_context = context;
+			_mapper = mapper;
 		}
 
 		public BookViewModel Handle()
@@ -19,12 +22,7 @@ namespace WebApi.BookOperations.GetBookById
 			if(book is null){
 				throw new InvalidOperationException("Book not exist.");
 			}
-			BookViewModel mappedBook = new BookViewModel() {
-				Title = book.Title,
-				Genre = ((GenreEnum)book.GenreId).ToString(),
-				PublishDate = book.PublishDate.Date.ToString("dd/MM/yy"),
-				PageCount = book.PageCount
-			};
+			BookViewModel mappedBook = _mapper.Map<BookViewModel>(book);
 			return mappedBook;
 		}
 	}
