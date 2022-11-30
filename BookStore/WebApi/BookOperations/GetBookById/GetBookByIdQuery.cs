@@ -5,7 +5,7 @@ namespace WebApi.BookOperations.GetBookById
 {
 	public class GetBookById
 	{
-		public int Id;
+		public int Id { get; set ;}
 		private readonly BookStoreDbContext _context;
 
 		public GetBookById(BookStoreDbContext context)
@@ -16,6 +16,9 @@ namespace WebApi.BookOperations.GetBookById
 		public BookViewModel Handle()
 		{
 			var book = _context.Books.Where(b => b.Id == Id).SingleOrDefault();
+			if(book is null){
+				throw new InvalidOperationException("Book not exist.");
+			}
 			BookViewModel mappedBook = new BookViewModel() {
 				Title = book.Title,
 				Genre = ((GenreEnum)book.GenreId).ToString(),

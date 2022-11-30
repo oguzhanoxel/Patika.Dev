@@ -4,7 +4,7 @@ namespace WebApi.BookOperations.UpdateBook
 {
 	public class UpdateBookCommand
 	{
-		public int Id;
+		public int Id{ get; set; }
 		public UpdateBookModel Model { get; set; }
 		private readonly BookStoreDbContext _context;
 
@@ -20,14 +20,10 @@ namespace WebApi.BookOperations.UpdateBook
 			{
 				throw new InvalidOperationException("Book not exist.");
 			}
-			book = new Book() {
-				Id = this.Id,
-				Title = Model.Title,
-				PublishDate = Model.PublishDate,
-				PageCount = Model.PageCount,
-				GenreId = Model.GenreId
-			};
-			_context.Update(book);
+			book.Title = Model.Title != default ? Model.Title : book.Title;
+			book.GenreId = Model.GenreId != default ? Model.GenreId : book.GenreId;
+			book.PageCount = Model.PageCount != default ? Model.PageCount : book.PageCount;
+			book.PublishDate = Model.PublishDate != default ? Model.PublishDate : book.PublishDate;
 			_context.SaveChanges();
 		}
 	}
