@@ -1,4 +1,5 @@
 using WebApi.DbAccess;
+using WebApi.Entities;
 
 public class BookStoreDataGenerator
 {
@@ -13,6 +14,17 @@ public class BookStoreDataGenerator
 					new Book() {Title="Chainsawman", GenreId=3, PageCount=160, PublishDate= new DateTime(2012,12,21)},
 					new Book() {Title="Attack on Titan", GenreId=3, PageCount=300, PublishDate= new DateTime(2002,12,21)},
 					new Book() {Title="Herland", GenreId=2, PageCount=100, PublishDate= new DateTime(2011,12,21)}
+				);
+
+				context.SaveChanges();
+			}
+
+			if(!context.Genres.Any())
+			{
+				context.AddRange(
+					new Genre() {Name="Horror"},
+					new Genre() {Name="Science Fiction"},
+					new Genre() {Name="Comic"}
 				);
 
 				context.SaveChanges();

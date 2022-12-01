@@ -1,8 +1,8 @@
 using AutoMapper;
-using WebApi.Common;
+using Microsoft.EntityFrameworkCore;
 using WebApi.DbAccess;
 
-namespace WebApi.BookOperations.GetBookById
+namespace WebApi.Application.BookOperations.Quaries.GetBookById
 {
 	public class GetBookById
 	{
@@ -18,7 +18,7 @@ namespace WebApi.BookOperations.GetBookById
 
 		public BookViewModel Handle()
 		{
-			var book = _context.Books.Where(b => b.Id == Id).SingleOrDefault();
+			var book = _context.Books.Include(b => b.Genre).Where(b => b.Id == Id).SingleOrDefault();
 			if(book is null){
 				throw new InvalidOperationException("Book not exist.");
 			}

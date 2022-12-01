@@ -1,7 +1,7 @@
 using AutoMapper;
 using WebApi.DbAccess;
 
-namespace WebApi.BookOperations.UpdateBook
+namespace WebApi.Application.BookOperations.Commands.UpdateBook
 {
 	public class UpdateBookCommand
 	{
