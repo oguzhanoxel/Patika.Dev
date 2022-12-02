@@ -4,12 +4,12 @@ using WebApi.DbAccess;
 
 namespace WebApi.Application.BookOperations.Quaries.GetBooks
 {
-	public class GetBooksQuery
+	public class GetBookListQuery
 	{
 		private readonly BookStoreDbContext _context;
 		private readonly IMapper _mapper;
 
-		public GetBooksQuery(BookStoreDbContext context, IMapper mapper)
+		public GetBookListQuery(BookStoreDbContext context, IMapper mapper)
 		{
 			_context = context;
 			_mapper = mapper;
@@ -17,7 +17,7 @@ namespace WebApi.Application.BookOperations.Quaries.GetBooks
 
 		public List<BooksViewModel> Handle()
 		{
-			var bookList = _context.Books.Include(b => b.Genre).OrderBy(b => b.Id).ToList();
+			var bookList = _context.Books.Include(b => b.Genre).Include(b => b.Author).OrderBy(b => b.Id).ToList();
 			List<BooksViewModel> mappedList = _mapper.Map<List<BooksViewModel>>(bookList);
 			return mappedList;
 		}
@@ -26,6 +26,7 @@ namespace WebApi.Application.BookOperations.Quaries.GetBooks
 	public class BooksViewModel
 	{
 		public string Title { get; set; }
+		public string Author { get; set; }
 		public int PageCount { get; set; }
 		public string PublishDate { get; set; }
 		public string Genre { get; set; }

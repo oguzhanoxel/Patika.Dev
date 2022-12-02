@@ -3,12 +3,12 @@ using WebApi.DbAccess;
 
 namespace WebApi.Application.GenreOperations.Queries.GetGenres
 {
-	public class GetGenresQuery
+	public class GetGenreListQuery
 	{
 		public readonly BookStoreDbContext _context;
 		public readonly IMapper _mapper;
 
-		public GetGenresQuery(BookStoreDbContext context, IMapper mapper)
+		public GetGenreListQuery(BookStoreDbContext context, IMapper mapper)
 		{
 			_context = context;
 			_mapper = mapper;

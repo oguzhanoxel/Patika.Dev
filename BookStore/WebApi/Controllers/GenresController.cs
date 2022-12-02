@@ -26,7 +26,7 @@ namespace WebApi.Controllers
 		[HttpGet]
 		public IActionResult GetGenres()
 		{
-			GetGenresQuery q = new GetGenresQuery(_context, _mapper);
+			GetGenreListQuery q = new GetGenreListQuery(_context, _mapper);
 			var result = q.Handle();
 			return Ok(result);
 		}

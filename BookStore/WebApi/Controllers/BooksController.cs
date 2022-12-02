@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using WebApi.Application.BookOperations.Commands.CreateBook;
 using WebApi.Application.BookOperations.Commands.DeleteBook;
 using WebApi.Application.BookOperations.Commands.UpdateBook;
-using WebApi.Application.BookOperations.Quaries.GetBookById;
+using WebApi.Application.BookOperations.Quaries.GetBookDetail;
 using WebApi.Application.BookOperations.Quaries.GetBooks;
 using WebApi.DbAccess;
 
@@ -25,14 +25,14 @@ public class BooksController : ControllerBase {
 
 	[HttpGet]
 	public IActionResult GetBooks(){
-		GetBooksQuery q = new GetBooksQuery(_context, _mapper);
+		GetBookListQuery q = new GetBookListQuery(_context, _mapper);
 		var result = q.Handle();
 		return Ok(result);
 	}
 
 	[HttpGet("{id}")]
 	public IActionResult GetById(int id){
-		GetBookById q = new GetBookById(_context, _mapper);
+		GetBookDetailQuery q = new GetBookDetailQuery(_context, _mapper);
 		BookViewModel result;
 		q.Id = id;
 		result = q.Handle();
