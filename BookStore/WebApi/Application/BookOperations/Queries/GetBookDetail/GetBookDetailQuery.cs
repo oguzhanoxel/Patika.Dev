@@ -7,10 +7,10 @@ namespace WebApi.Application.BookOperations.Quaries.GetBookDetail
 	public class GetBookDetailQuery
 	{
 		public int Id { get; set ;}
-		private readonly BookStoreDbContext _context;
+		private readonly IBookStoreDbContext _context;
 		private readonly IMapper _mapper;
 
-		public GetBookDetailQuery(BookStoreDbContext context, IMapper mapper)
+		public GetBookDetailQuery(IBookStoreDbContext context, IMapper mapper)
 		{
 			_context = context;
 			_mapper = mapper;

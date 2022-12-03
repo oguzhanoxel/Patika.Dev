@@ -4,13 +4,20 @@ using WebApi.Entities;
 namespace WebApi.DbAccess
 {
 
-	public class BookStoreDbContext : DbContext {
-		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+	public class BookStoreDbContext : DbContext, IBookStoreDbContext {
+
+		public BookStoreDbContext(DbContextOptions<BookStoreDbContext> options) : base(options)
 		{
-			optionsBuilder.UseInMemoryDatabase(databaseName: "BookStoreDb");
+			
 		}
+
 		public DbSet<Book> Books { get; set; }
 		public DbSet<Genre> Genres { get; set; }
 		public DbSet<Author> Authors { get; set; }
+
+		public override int SaveChanges()
+		{
+			return base.SaveChanges();
+		}
 	}
 }

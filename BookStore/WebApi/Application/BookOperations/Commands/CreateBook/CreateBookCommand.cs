@@ -7,10 +7,10 @@ namespace WebApi.Application.BookOperations.Commands.CreateBook
 	public class CreateBookCommand
 	{
 		public CreateBookModel Model { get; set; }
-		private readonly BookStoreDbContext _context;
+		private readonly IBookStoreDbContext _context;
 		private readonly IMapper _mapper;
 
-		public CreateBookCommand(BookStoreDbContext context, IMapper mapper)
+		public CreateBookCommand(IBookStoreDbContext context, IMapper mapper)
 		{
 			_context = context;
 			_mapper = mapper;
@@ -22,10 +22,10 @@ namespace WebApi.Application.BookOperations.Commands.CreateBook
 
 			if (book is not null)
 			{
-				throw new InvalidOperationException("Book exist.");
+				throw new InvalidOperationException("Book exist");
 			}
 			Book mappedBook = _mapper.Map<Book>(Model);
-			_context.Add(mappedBook);
+			_context.Books.Add(mappedBook);
 			_context.SaveChanges();
 		}
 	}

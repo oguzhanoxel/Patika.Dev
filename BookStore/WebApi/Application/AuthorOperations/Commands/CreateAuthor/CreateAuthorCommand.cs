@@ -7,10 +7,10 @@ namespace WebApi.Application.AuthorOperations.Commands.CreateAuthor
 	public class CreateAuthorCommand
 	{
 		public CreateAuthorModel Model { get; set; }
-		private readonly BookStoreDbContext _context;
+		private readonly IBookStoreDbContext _context;
 		private readonly IMapper _mapper;
 
-		public CreateAuthorCommand(BookStoreDbContext context, IMapper mapper)
+		public CreateAuthorCommand(IBookStoreDbContext context, IMapper mapper)
 		{
 			_context = context;
 			_mapper = mapper;
@@ -23,7 +23,7 @@ namespace WebApi.Application.AuthorOperations.Commands.CreateAuthor
 				throw new InvalidOperationException("Author Exist.");
 			}
 			var mappedAuthor = _mapper.Map<Author>(Model);
-			_context.Add(mappedAuthor);
+			_context.Authors.Add(mappedAuthor);
 			_context.SaveChanges();
 		}
 	}

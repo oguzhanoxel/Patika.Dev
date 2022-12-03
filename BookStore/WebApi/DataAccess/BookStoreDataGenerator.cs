@@ -1,10 +1,11 @@
+using Microsoft.EntityFrameworkCore;
 using WebApi.DbAccess;
 using WebApi.Entities;
 
 public class BookStoreDataGenerator
 {
-	public static void Initialize(){
-		using (var context = new BookStoreDbContext())
+	public static void Initialize(IServiceProvider serviceProvider){
+		using (var context = new BookStoreDbContext(serviceProvider.GetRequiredService<DbContextOptions<BookStoreDbContext>>()))
 		{
 			if(!context.Books.Any())
 			{

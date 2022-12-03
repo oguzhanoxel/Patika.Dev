@@ -8,8 +8,8 @@ namespace WebApi.Application.BookOperations.Commands.CreateBook
 		{
 			RuleFor(c => c.Model.GenreId).GreaterThan(0);
 			RuleFor(c => c.Model.PageCount).GreaterThan(0);
-			RuleFor(c => c.Model.PublishDate.Date).NotEmpty();
-			RuleFor(c => c.Model.Title).MinimumLength(1);
+			RuleFor(c => c.Model.PublishDate.Date).NotEmpty().LessThan(DateTime.Now.Date);
+			RuleFor(c => c.Model.Title).NotNull().MinimumLength(1);
 		}
 	}
 }
