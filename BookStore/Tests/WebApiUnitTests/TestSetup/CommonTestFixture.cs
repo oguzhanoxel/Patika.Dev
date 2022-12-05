@@ -16,8 +16,9 @@ namespace WebApiUnitTests.TestSetup
 			Context = new BookStoreDbContext(options);
 			
 			Context.Database.EnsureCreated();
-			Context.AddBooks();
+			Context.AddAuthors();
 			Context.AddGenres();
+			Context.AddBooks();
 			Context.SaveChanges();
 
 			Mapper = new MapperConfiguration(cfg => {

@@ -20,7 +20,7 @@ namespace WebApi.Application.GenreOperations.Queries.GetGenreDetail
 			var genre = _context.Genres.SingleOrDefault(g => g.IsActive && g.Id == Id);
 			if (genre is null)
 			{
-				throw new InvalidOperationException("Book not found.");
+				throw new InvalidOperationException("Genre not found");
 			}
 			GenreDetailViewModel mappedGenre = _mapper.Map<GenreDetailViewModel>(genre);
 			return mappedGenre;

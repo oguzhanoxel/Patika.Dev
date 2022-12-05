@@ -19,7 +19,7 @@ namespace WebApi.Application.GenreOperations.Commands.CreateGenre
 			var genre = _context.Genres.SingleOrDefault(g => g.Name == Model.Name);
 			if(genre is not null)
 			{
-				throw new InvalidOperationException("Genre exist.");
+				throw new InvalidOperationException("Genre exist");
 			}
 			_context.Genres.Add(new Genre() {
 				Name = Model.Name

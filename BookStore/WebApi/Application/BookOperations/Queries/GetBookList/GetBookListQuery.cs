@@ -2,7 +2,7 @@ using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using WebApi.DbAccess;
 
-namespace WebApi.Application.BookOperations.Quaries.GetBooks
+namespace WebApi.Application.BookOperations.Queries.GetBookList
 {
 	public class GetBookListQuery
 	{

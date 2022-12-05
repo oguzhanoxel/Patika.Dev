@@ -2,7 +2,7 @@ using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using WebApi.DbAccess;
 
-namespace WebApi.Application.BookOperations.Quaries.GetBookDetail
+namespace WebApi.Application.BookOperations.Queries.GetBookDetail
 {
 	public class GetBookDetailQuery
 	{
@@ -18,9 +18,9 @@ namespace WebApi.Application.BookOperations.Quaries.GetBookDetail
 
 		public BookViewModel Handle()
 		{
-			var book = _context.Books.Include(b => b.Genre).Include(b => b.Author).Where(b => b.Id == Id).SingleOrDefault();
+			var book = _context.Books.Include(b => b.Genre).Include(b => b.Author).SingleOrDefault(b => b.Id == Id);
 			if(book is null){
-				throw new InvalidOperationException("Book not exist.");
+				throw new InvalidOperationException("Book not exist");
 			}
 			BookViewModel mappedBook = _mapper.Map<BookViewModel>(book);
 			return mappedBook;

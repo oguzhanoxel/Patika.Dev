@@ -4,8 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using WebApi.Application.BookOperations.Commands.CreateBook;
 using WebApi.Application.BookOperations.Commands.DeleteBook;
 using WebApi.Application.BookOperations.Commands.UpdateBook;
-using WebApi.Application.BookOperations.Quaries.GetBookDetail;
-using WebApi.Application.BookOperations.Quaries.GetBooks;
+using WebApi.Application.BookOperations.Queries.GetBookDetail;
+using WebApi.Application.BookOperations.Queries.GetBookList;
 using WebApi.DbAccess;
 
 namespace WebApi.Controllers;

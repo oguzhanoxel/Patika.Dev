@@ -5,8 +5,8 @@ using WebApi.Application.AuthorOperations.Queries.GetAuthorDetail;
 using WebApi.Application.AuthorOperations.Queries.GetAuthorList;
 using WebApi.Application.BookOperations.Commands.CreateBook;
 using WebApi.Application.BookOperations.Commands.UpdateBook;
-using WebApi.Application.BookOperations.Quaries.GetBookDetail;
-using WebApi.Application.BookOperations.Quaries.GetBooks;
+using WebApi.Application.BookOperations.Queries.GetBookDetail;
+using WebApi.Application.BookOperations.Queries.GetBookList;
 using WebApi.Application.GenreOperations.Queries.GetGenreDetail;
 using WebApi.Application.GenreOperations.Queries.GetGenres;
 using WebApi.Entities;
@@ -22,11 +22,11 @@ namespace WebApi.Mapping
 			
 			CreateMap<BooksViewModel, Book>().ReverseMap()
 			.ForMember(x => x.Genre, opt => opt.MapFrom(src => src.Genre.Name))
-			.ForMember(x => x.Author, opt => opt.MapFrom(src => src.Author.Name));
+			.ForMember(x => x.Author, opt => opt.MapFrom(src => $"{src.Author.Name} {src.Author.Surname}"));
 			
 			CreateMap<BookViewModel, Book>().ReverseMap()
 			.ForMember(x => x.Genre, opt => opt.MapFrom(src => src.Genre.Name))
-			.ForMember(x => x.Author, opt => opt.MapFrom(src => src.Author.Name));
+			.ForMember(x => x.Author, opt => opt.MapFrom(src => $"{src.Author.Name} {src.Author.Surname}"));
 
 			// Genre
 			CreateMap<GenreViewModel, Genre>().ReverseMap();

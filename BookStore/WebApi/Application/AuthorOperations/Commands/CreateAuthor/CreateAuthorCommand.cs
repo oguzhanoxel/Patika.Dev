@@ -20,7 +20,7 @@ namespace WebApi.Application.AuthorOperations.Commands.CreateAuthor
 		{
 			if(_context.Authors.Any(a => a.Name == Model.Name && a.Surname == Model.Surname))
 			{
-				throw new InvalidOperationException("Author Exist.");
+				throw new InvalidOperationException("Author Exist");
 			}
 			var mappedAuthor = _mapper.Map<Author>(Model);
 			_context.Authors.Add(mappedAuthor);

@@ -7,11 +7,11 @@ namespace WebApiUnitTests.TestSetup
 	{
 		public static void AddGenres(this BookStoreDbContext context)
 		{
-			context.Genres.AddRange(
-					new Genre() {Name="Horror"},
-					new Genre() {Name="Science Fiction"},
-					new Genre() {Name="Post-Apocalyptic"}
-				);
+				context.Genres.AddRange(
+						new Genre() { Name = "Horror" },
+						new Genre() { Name = "Science Fiction" },
+						new Genre() { Name = "Post-Apocalyptic" }
+					);
 		}
 	}
 }

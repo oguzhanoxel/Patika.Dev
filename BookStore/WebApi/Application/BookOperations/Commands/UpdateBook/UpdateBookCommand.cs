@@ -21,7 +21,11 @@ namespace WebApi.Application.BookOperations.Commands.UpdateBook
 			var book = _context.Books.FirstOrDefault(b => b.Id == Id);
 			if (book is null)
 			{
-				throw new InvalidOperationException("Book not exist.");
+				throw new InvalidOperationException("Book not exist");
+			}
+			if (_context.Books.Where(b => b.Id != Id).Any(b => b.Title == Model.Title))
+			{
+				throw new InvalidOperationException("Book title exist");
 			}
 
 			book.Title = Model.Title != default ? Model.Title : book.Title;

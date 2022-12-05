@@ -17,7 +17,7 @@ namespace WebApi.Application.GenreOperations.Commands.DeleteGenre
 			var genre = _context.Genres.Find(Id);
 			if(genre is null)
 			{
-				throw new InvalidOperationException("Genre not exist.");
+				throw new InvalidOperationException("Genre not exist");
 			}
 			_context.Genres.Remove(genre);
 			_context.SaveChanges();
